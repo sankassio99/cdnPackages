@@ -164,7 +164,7 @@ class StratwsHeader extends HTMLElement {
                 this.writeMainMenu(data);
                 this.activeMainMenuBehaviors()
             })
-            .catch((error) => console.log(error));
+            .catch((error) => console.warn(error));
         })
     }
 
@@ -177,14 +177,14 @@ class StratwsHeader extends HTMLElement {
         const popover = this.shadowRoot.querySelector("#mini-popover-main-menu");
         
         // When click on home icon, open Mainmenu
-        const iconButton = this.shadowRoot.querySelector("#main-menu-trigger");
-        iconButton.addEventListener("click", ()=> popover.style.display = 'block')
+        const openButton = this.shadowRoot.querySelector("#main-menu-trigger");
+        openButton.addEventListener("click", ()=> popover.style.display = 'block')
         
         this.closeMenuOnClickCloseIcon(popover);
         
         this.showListOnHoverIcon();
 
-        this.closeMenuOnClickOutside();
+        this.closeMenuOnClickOutside(popover, openButton);
 
     }
 
@@ -205,9 +205,9 @@ class StratwsHeader extends HTMLElement {
         });
     }
 
-    closeMenuOnClickOutside() {
+    closeMenuOnClickOutside(popover, openButton) {
         popover.addEventListener("click", (event) => event.stopPropagation());
-        iconButton.addEventListener("click", (event) => event.stopPropagation());
+        openButton.addEventListener("click", (event) => event.stopPropagation());
         window.addEventListener("click", () => {
             if (popover.style.display == 'block') {
                 popover.style.display = 'none';
