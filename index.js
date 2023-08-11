@@ -162,7 +162,7 @@ class StratwsHeader extends HTMLElement {
     async getMainMenuHtml() {
         const promise = new Promise((res, rej) => {
           fetch('/SIMPLE/Initiative/GetMainMenu')
-            .then(res => res.status == 404 ? mainMenu : req.text())
+            .then(res => res.status == 404 ? mainMenu : res.text())
             .then((data) => {
                 this.writeMainMenu(data);
                 this.activeMainMenuBehaviors()
