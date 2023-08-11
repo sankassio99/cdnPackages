@@ -75,9 +75,6 @@ const mainMenu = `
                 <div class="js-sub-list-wrap mm-sub-list-wrap mm-body-active" data-id="mm-sub-actions">
                     <div class="mm-title">Oportunidades de Melhoria</div>
                     <ul class="mm-sub-list">
-
-
-
                         <li><a id="main-menu-melhorias-iniciativas"
                                 href="/SIMPLE/Initiatives"><span>Iniciativas</span></a></li>
                     </ul>
