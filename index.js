@@ -180,31 +180,39 @@ class StratwsHeader extends HTMLElement {
         const iconButton = this.shadowRoot.querySelector("#main-menu-trigger");
         iconButton.addEventListener("click", ()=> popover.style.display = 'block')
         
-        // When click on close icon, must close main menu
-        const closeBtn = this.shadowRoot.querySelector("#js-main-menu-close");
-        closeBtn.addEventListener("click", ()=> popover.style.display = 'none')
+        this.closeMenuOnClickCloseIcon(popover);
         
-        // When hover icon must show links list respective
+        this.showListOnHoverIcon();
+
+        this.closeMenuOnClickOutside();
+
+    }
+
+    closeMenuOnClickCloseIcon(popover) {
+        const closeBtn = this.shadowRoot.querySelector("#js-main-menu-close");
+        closeBtn.addEventListener("click", () => popover.style.display = 'none');
+    }
+
+    showListOnHoverIcon() {
         const switchItems = this.shadowRoot.querySelectorAll(".js-main-menu-switch");
         switchItems.forEach(item => {
-            item.addEventListener("mouseenter", (event)=> {
+            item.addEventListener("mouseenter", (event) => {
                 const itemHoveredId = event.target.dataset.id;
-                this.shadowRoot.querySelectorAll(`.js-sub-list-wrap`).forEach(body => body.classList.remove("mm-body-active"))
+                this.shadowRoot.querySelectorAll(`.js-sub-list-wrap`).forEach(body => body.classList.remove("mm-body-active"));
 
-                this.shadowRoot.querySelector(`.js-sub-list-wrap[data-id="${itemHoveredId}"]`).classList.add("mm-body-active")
+                this.shadowRoot.querySelector(`.js-sub-list-wrap[data-id="${itemHoveredId}"]`).classList.add("mm-body-active");
             });
         });
+    }
 
-        // When click outside main menu, must close main menu
-        popover.addEventListener("click", (event) => event.stopPropagation())
-        iconButton.addEventListener("click", (event) => event.stopPropagation())
+    closeMenuOnClickOutside() {
+        popover.addEventListener("click", (event) => event.stopPropagation());
+        iconButton.addEventListener("click", (event) => event.stopPropagation());
         window.addEventListener("click", () => {
-            console.log(popover.style.display);
-            if(popover.style.display == 'block'){
-                popover.style.display = 'none'
+            if (popover.style.display == 'block') {
+                popover.style.display = 'none';
             }
-            console.log("window clicked");
-        })
+        });
     }
 }
 
