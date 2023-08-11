@@ -174,16 +174,19 @@ class StratwsHeader extends HTMLElement {
     }
 
     activeMainMenuBehaviors(){
+        const popover = this.shadowRoot.querySelector("#mini-popover-main-menu");
+        
+        // When click on home icon, open Mainmenu
         const iconButton = this.shadowRoot.querySelector("#main-menu-trigger");
-
-        const mainMenuPopup = this.shadowRoot.querySelector("#mini-popover-main-menu");
-        const mainMenuClose = this.shadowRoot.querySelector("#js-main-menu-close");
-        const mainMenuswitch = this.shadowRoot.querySelectorAll(".js-main-menu-switch");
-
-        iconButton.addEventListener("click", ()=> mainMenuPopup.style.display = 'block')
-        mainMenuClose.addEventListener("click", ()=> mainMenuPopup.style.display = 'none')
-
-        mainMenuswitch.forEach(item => {
+        iconButton.addEventListener("click", ()=> popover.style.display = 'block')
+        
+        // When click on close icon, must close main menu
+        const closeBtn = this.shadowRoot.querySelector("#js-main-menu-close");
+        closeBtn.addEventListener("click", ()=> popover.style.display = 'none')
+        
+        // When hover icon must show links list respective
+        const switchItems = this.shadowRoot.querySelectorAll(".js-main-menu-switch");
+        switchItems.forEach(item => {
             item.addEventListener("mouseenter", (event)=> {
                 const itemHoveredId = event.target.dataset.id;
                 this.shadowRoot.querySelectorAll(`.js-sub-list-wrap`).forEach(body => body.classList.remove("mm-body-active"))
@@ -191,6 +194,17 @@ class StratwsHeader extends HTMLElement {
                 this.shadowRoot.querySelector(`.js-sub-list-wrap[data-id="${itemHoveredId}"]`).classList.add("mm-body-active")
             });
         });
+
+        // When click outside main menu, must close main menu
+        popover.addEventListener("click", (event) => event.stopPropagation())
+        iconButton.addEventListener("click", (event) => event.stopPropagation())
+        window.addEventListener("click", () => {
+            console.log(popover.style.display);
+            if(popover.style.display == 'block'){
+                popover.style.display = 'none'
+            }
+            console.log("window clicked");
+        })
     }
 }
 
