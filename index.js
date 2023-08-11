@@ -12,8 +12,8 @@ template.innerHTML = `
     </div>
 
     <div class="mn-center">
-        <svg class="mn-logo">
-            <use xlink:href="SIMPLE/Content/svg/stratws.svg#stratws-one"></use>
+        <svg class="mn-logo" >
+            <img src="https://cdn.jsdelivr.net/gh/sankassio99/cdnPackages@latest/stratws-logo.svg" type="image/svg+xml"></img>
         </svg>
     </div>
 </header>
@@ -42,7 +42,7 @@ class StratwsHeader extends HTMLElement {
             .then((data) => {
                 this.writeMainMenu(data);
             })
-            .catch((error) => console.error(error));
+            .catch((error) => console.log(error));
         })
     }
 
