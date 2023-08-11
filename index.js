@@ -99,11 +99,10 @@ template.innerHTML = `
             <div id="mainMenuSpace"></div>
         </div>
         <div class="mn-center">
-            <svg class="mn-logo" >
-                <img src="https://cdn.jsdelivr.net/gh/sankassio99/cdnPackages@v1.2.7/stratws-logo.svg" type="image/svg+xml"></img>
-            </svg>
+            <img class="mn-logo" 
+            src="https://cdn.jsdelivr.net/gh/sankassio99/cdnPackages@v1.2.7/stratws-logo.svg" type="image/svg+xml"></img>
         </div>
-        <div class="mn-right">
+        <div class="mn-right" id="controlButtons">
             <slot name="workfrontFilter"></slot>
         </div>
     </div>
