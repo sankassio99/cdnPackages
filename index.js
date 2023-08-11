@@ -122,8 +122,8 @@ class StratwsHeader extends HTMLElement {
         shadowDoom.appendChild(template.content);
     }
 
-    async connectedCallback() {
-        await this.getMainMenuHtml();
+    connectedCallback() {
+        this.getMainMenuHtml();
     }
 
     stratwsStylesLink(){
@@ -156,16 +156,14 @@ class StratwsHeader extends HTMLElement {
         return style;
     }
 
-    async getMainMenuHtml() {
-        const promise = new Promise((res, rej) => {
-          fetch('/SIMPLE/Initiative/GetMainMenu')
+    getMainMenuHtml() {
+        fetch('/SIMPLE/Initiative/GetMainMenu')
             .then(res => res.status == 404 ? mainMenu : res.text())
             .then((data) => {
                 this.writeMainMenu(data);
                 this.activeMainMenuBehaviors()
             })
             .catch((error) => console.warn(error));
-        })
     }
 
     writeMainMenu(mainMenuHtml){
@@ -175,10 +173,9 @@ class StratwsHeader extends HTMLElement {
 
     activeMainMenuBehaviors(){
         const popover = this.shadowRoot.querySelector("#mini-popover-main-menu");
-        
-        // When click on home icon, open Mainmenu
         const openButton = this.shadowRoot.querySelector("#main-menu-trigger");
-        openButton.addEventListener("click", ()=> popover.style.display = 'block')
+
+        this.openMenuOnClick(openButton, popover);
         
         this.closeMenuOnClickCloseIcon(popover);
         
@@ -186,6 +183,10 @@ class StratwsHeader extends HTMLElement {
 
         this.closeMenuOnClickOutside(popover, openButton);
 
+    }
+
+    openMenuOnClick(openButton, popover) {
+        openButton.addEventListener("click", () => popover.style.display = 'block');
     }
 
     closeMenuOnClickCloseIcon(popover) {
