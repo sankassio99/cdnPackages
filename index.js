@@ -100,8 +100,11 @@ template.innerHTML = `
         </div>
         <div class="mn-center">
             <svg class="mn-logo" >
-                <img src="https://cdn.jsdelivr.net/gh/sankassio99/cdnPackages@latest/stratws-logo.svg" type="image/svg+xml"></img>
+                <img src="https://cdn.jsdelivr.net/gh/sankassio99/cdnPackages@v1.2.7/stratws-logo.svg" type="image/svg+xml"></img>
             </svg>
+        </div>
+        <div class="mn-right">
+            <slot name="workfrontFilter"></slot>
         </div>
     </div>
 
