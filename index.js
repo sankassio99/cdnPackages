@@ -1,6 +1,4 @@
 const template = document.createElement('template');
-const link = document.createElement('link');
-const linkHref = "http://vli.cacatua.com/SIMPLE/Content/sw-css/azul/siteware.css?version=2104.6";
 
 const mainMenu = `
 <div class="main-menu-wrap mini-popover">
@@ -120,11 +118,23 @@ class StratwsHeader extends HTMLElement {
 
         shadowDoom.appendChild(this.styles());
 
-        link.setAttribute("rel", "stylesheet");
-        link.setAttribute("href", linkHref)
-        shadowDoom.appendChild(link);
+        shadowDoom.appendChild(this.stratwsStylesLink());
 
         shadowDoom.appendChild(template.content);
+    }
+
+    async connectedCallback() {
+        await this.getMainMenuHtml();
+    }
+
+    stratwsStylesLink(){
+        const link = document.createElement('link');
+        const linkHref = "http://vli.cacatua.com/SIMPLE/Content/sw-css/azul/siteware.css?version=2104.6";
+        
+        link.setAttribute("rel", "stylesheet");
+        link.setAttribute("href", linkHref);
+
+        return link;
     }
 
     styles(){
@@ -134,10 +144,6 @@ class StratwsHeader extends HTMLElement {
         `
 
         return style;
-    }
-
-    async connectedCallback() {
-        await this.getMainMenuHtml();
     }
 
     async getMainMenuHtml() {
