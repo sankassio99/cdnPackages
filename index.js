@@ -150,8 +150,6 @@ class StratwsHeader extends HTMLElement {
 
         mainMenuswitch.forEach(item => {
             item.addEventListener("mouseenter", (event)=> {
-                event.stopPropagation()
-
                 const itemHoveredId = event.target.dataset.id;
                 this.shadowRoot.querySelectorAll(`.js-sub-list-wrap`).forEach(body => body.classList.remove("mm-body-active"))
 
