@@ -120,7 +120,7 @@ template.innerHTML = `
 
     <div class="mn-center">
         <svg class="mn-logo">
-            <use xlink:href="/Content/svg/stratws.svg#stratws-one"></use>
+            <use xlink:href="SIMPLE/Content/svg/stratws.svg#stratws-one"></use>
         </svg>
     </div>
 </header>
