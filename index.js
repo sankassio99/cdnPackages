@@ -101,13 +101,13 @@ template.innerHTML = `
         <div class="mn-left">
             <div id="mainMenuSpace"></div>
         </div>
+        <div class="mn-center">
+            <svg class="mn-logo" >
+                <img src="https://cdn.jsdelivr.net/gh/sankassio99/cdnPackages@latest/stratws-logo.svg" type="image/svg+xml"></img>
+            </svg>
+        </div>
     </div>
 
-    <div class="mn-center">
-        <svg class="mn-logo" >
-            <img src="https://cdn.jsdelivr.net/gh/sankassio99/cdnPackages@latest/stratws-logo.svg" type="image/svg+xml"></img>
-        </svg>
-    </div>
 </header>
 `
 
