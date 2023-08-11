@@ -118,11 +118,22 @@ class StratwsHeader extends HTMLElement {
         super();
         const shadowDoom = this.attachShadow({mode: "open"}); 
 
+        shadowDoom.appendChild(this.styles());
+
         link.setAttribute("rel", "stylesheet");
         link.setAttribute("href", linkHref)
-        
         shadowDoom.appendChild(link);
+
         shadowDoom.appendChild(template.content);
+    }
+
+    styles(){
+        const style = document.createElement('style');
+        style.textContent = `
+            
+        `
+
+        return style;
     }
 
     async connectedCallback() {
