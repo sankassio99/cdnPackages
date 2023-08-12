@@ -1,4 +1,4 @@
-const template = document.createElement('template');
+import header from './header.html'
 
 const mainMenu = `
 <div class="main-menu-wrap mini-popover">
@@ -92,23 +92,6 @@ const mainMenu = `
 </div>
 `
 
-template.innerHTML = `
-<header class="navbar navbar-default navbar-fixed-top" style="background-color:#3777bc">
-    <div class="main-navbar">
-        <div class="mn-left">
-            <div id="mainMenuSpace"></div>
-        </div>
-        <div class="mn-center">
-            <img class="mn-logo" 
-            src="https://cdn.jsdelivr.net/gh/sankassio99/cdnPackages@v1.2.7/stratws-logo.svg" type="image/svg+xml"></img>
-        </div>
-        <div class="mn-right" id="controlButtons">
-            <slot name="workfrontFilter"></slot>
-        </div>
-    </div>
-</header>
-`
-
 class StratwsHeader extends HTMLElement {
     constructor(){
         super();
@@ -120,7 +103,13 @@ class StratwsHeader extends HTMLElement {
         
         shadowDoom.appendChild(this.fontAwesomeCDN());
 
-        shadowDoom.appendChild(template.content);
+        shadowDoom.appendChild(this.createTemplate());
+    }
+
+    createTemplate() {
+        const template = document.createElement('template');
+        template.innerHTML = header;
+        return template;
     }
 
     connectedCallback() {
