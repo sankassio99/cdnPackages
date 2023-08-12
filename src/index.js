@@ -1,115 +1,25 @@
 import header from './header.html'
+import mainMenu from './mainMenu.html'
 
-const mainMenu = `
-<div class="main-menu-wrap mini-popover">
-<a class="mm-trigger" id="main-menu-trigger" data-mini-popover="true"
-    data-mini-popover-conteudo="mini-popover-main-menu">
-    <svg>
-        <use xlink:href="/SIMPLE/Content/svg/modulos.svg#painel"></use>
-    </svg>
-    <span class="versao">2104.6</span>
-</a>
-<div id="mini-popover-main-menu" class="mp-box">
-    <div class="mp-content">
-        <div class="main-menu">
-            <div class="mm-ctrl">
-                <ul class="mm-list">
-                    <li class="mm-featured-item">
-                        <a id="js-main-menu-close" class="cursor-pointer">
-                            <i class="fa fa-times"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a id="main-menu-painel" href="/SIMPLE/MeuPainel" class="js-main-menu-switch"
-                            data-id="mm-sub-painel">
-                            <svg>
-                                <use xlink:href="/SIMPLE/Content/svg/modulos.svg#painel"></use>
-                            </svg>
-                        </a>
-                    </li>
-                    <li>
-                        <a id="main-menu-performance" href="/SIMPLE/PerformanceCorporativa"
-                            class="js-main-menu-switch" data-id="mm-sub-results">
-                            <svg>
-                                <use xlink:href="/SIMPLE/Content/svg/modulos.svg#performance"></use>
-                            </svg>
-                        </a>
-                    </li>
-                    <li class="mm-ctrl-active">
-                        <a id="main-menu-melhorias" href="/SIMPLE/OportunidadesDeMelhoria"
-                            class="js-main-menu-switch" data-id="mm-sub-actions">
-                            <svg>
-                                <use xlink:href="/SIMPLE/Content/svg/modulos.svg#melhorias"></use>
-                            </svg>
-                        </a>
-                    </li>
-                    <li>
-                        <a id="main-menu-admin" href="/SIMPLE/Configuracoes" class="js-main-menu-switch"
-                            data-id="mm-sub-admin">
-                            <svg>
-                                <use xlink:href="/SIMPLE/Content/svg/modulos.svg#configuracoes"></use>
-                            </svg>
-                        </a>
-                    </li>
-                </ul>
-
-            </div>
-            <div class="mm-body js-listagem-menus">
-                <div class="js-sub-list-wrap mm-sub-list-wrap" data-id="mm-sub-painel">
-                    <div class="mm-title">Meu Painel</div>
-                    <ul class="mm-sub-list">
-                        <li><a id="main-menu-painel-agenda"
-                                href="/SIMPLE/MeuPainel#agenda"><span>Agenda</span></a></li>
-                        <li><a id="main-menu-painel-radar"
-                                href="/SIMPLE/MeuPainel#radar"><span>Radar</span></a></li>
-                    </ul>
-                </div>
-                <div class="js-sub-list-wrap mm-sub-list-wrap" data-id="mm-sub-results">
-                    <div class="mm-title">Performance Corporativa</div>
-                    <ul class="mm-sub-list">
-                        <li><a id="main-menu-performance-planilha"
-                                href="/SIMPLE/PerformanceCorporativa/PlanilhaDeIndicadores"><span>Planilha</span></a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="js-sub-list-wrap mm-sub-list-wrap mm-body-active" data-id="mm-sub-actions">
-                    <div class="mm-title">Oportunidades de Melhoria</div>
-                    <ul class="mm-sub-list">
-                        <li><a id="main-menu-melhorias-iniciativas"
-                                href="/SIMPLE/Initiatives"><span>Iniciativas</span></a></li>
-                    </ul>
-                </div>
-                <div class="js-sub-list-wrap mm-sub-list-wrap" data-id="mm-sub-admin">
-                    <div class="mm-title">Configurações</div>
-                    <ul class="mm-sub-list">
-                        <li><a id="main-menu-admin-configuracoes"
-                                href="/SIMPLE/Configuracoes"><span>Configurações</span></a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-`
 
 class StratwsHeader extends HTMLElement {
     constructor(){
         super();
-        const shadowDoom = this.attachShadow({mode: "open"}); 
+        const shadowDom = this.attachShadow({mode: "open"}); 
 
-        shadowDoom.appendChild(this.styles());
+        shadowDom.appendChild(this.styles());
 
-        shadowDoom.appendChild(this.stratwsStylesLink());
+        shadowDom.appendChild(this.stratwsStylesLink());
         
-        shadowDoom.appendChild(this.fontAwesomeCDN());
+        shadowDom.appendChild(this.fontAwesomeCDN());
 
-        shadowDoom.appendChild(this.createTemplate());
+        shadowDom.appendChild(this.createTemplate());
     }
 
     createTemplate() {
         const template = document.createElement('template');
         template.innerHTML = header;
-        return template;
+        return template.content;
     }
 
     connectedCallback() {
