@@ -1,6 +1,5 @@
 import header from './header.html'
-import mainMenu from './mainMenu.html'
-
+import mainMenuDefault from './mainMenu.html'
 
 class StratwsHeader extends HTMLElement {
     constructor(){
@@ -22,8 +21,15 @@ class StratwsHeader extends HTMLElement {
         return template.content;
     }
 
-    connectedCallback() {
-        this.getMainMenuHtml();
+    async connectedCallback() {
+        let mainMenuHtml = await this.getMainMenuHtml();
+
+        if(mainMenuHtml === undefined){
+            mainMenuHtml = mainMenuDefault;
+        }
+
+        this.writeMainMenu(mainMenuHtml);
+        this.activeMainMenuBehaviors();
     }
 
     stratwsStylesLink(){
@@ -56,14 +62,13 @@ class StratwsHeader extends HTMLElement {
         return style;
     }
 
-    getMainMenuHtml() {
-        fetch('/SIMPLE/Initiative/GetMainMenu')
-            .then(res => res.status == 404 ? mainMenu : res.text())
-            .then((data) => {
-                this.writeMainMenu(data);
-                this.activeMainMenuBehaviors()
-            })
-            .catch((error) => console.warn(error));
+    async getMainMenuHtml() {
+        return new Promise((resolve, reject) => resolve(
+            fetch('/SIMPLE/Initiative/GetMainMenu')
+                .then(res => res.status == 404 ? undefined : res.text())
+                .then((data) => data)
+                .catch((error) => error)
+        ));
     }
 
     writeMainMenu(mainMenuHtml){
