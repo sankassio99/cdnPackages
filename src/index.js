@@ -34,7 +34,8 @@ class StratwsHeader extends HTMLElement {
 
     stratwsStylesLink(){
         const link = document.createElement('link');
-        const linkHref = "http://vli.cacatua.com/SIMPLE/Content/sw-css/azul/siteware.css?version=2104.6";
+        // REPLACE TO PRODUCTION URL:
+        const linkHref = "http://vli.cacatua.com/SIMPLE/Content/sw-css/modules/main-navbar.css?version=2104.6";
         
         link.setAttribute("rel", "stylesheet");
         link.setAttribute("href", linkHref);
