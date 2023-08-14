@@ -9,6 +9,14 @@
     <div class="main-navbar">
         <div class="mn-left">
             <div id="mainMenuSpace"></div>
+            <div class="second-menu">
+                <ul class="sm-list">
+                    <slot name="problemSolver"></slot>
+                    <slot name="presentations"></slot>
+                    <slot name="occurrences"></slot>
+                    <slot name="initiatives"></slot>
+                </ul>
+            </div>
         </div>
         <div class="mn-center">
             <img class="mn-logo" src="https://cdn.jsdelivr.net/gh/sankassio99/cdnPackages@v1.2.7/stratws-logo.svg"
