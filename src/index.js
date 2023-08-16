@@ -1,5 +1,5 @@
 import header from './header.html'
-import mainMenuDefault from './mainMenu.html'
+import mainMenuDefault from './mainMenuDefault.html'
 import mainMenuStyles from '!css-loader!./mainMenu.css'
 
 class StratwsHeader extends HTMLElement {
