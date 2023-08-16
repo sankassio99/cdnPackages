@@ -125,9 +125,12 @@ class StratwsHeader extends HTMLElement {
         switchItems.forEach(item => {
             item.addEventListener("mouseenter", (event) => {
                 const itemHoveredId = event.target.dataset.id;
-                this.shadowRoot.querySelectorAll(`.js-sub-list-wrap`).forEach(body => body.classList.remove("mm-body-active"));
 
+                this.shadowRoot.querySelectorAll(`.js-sub-list-wrap`).forEach(body => body.classList.remove("mm-body-active"));
+                this.shadowRoot.querySelectorAll(`.js-main-menu-switch`).forEach(anchor => anchor.closest('li').classList.remove("mm-ctrl-active"));
+                
                 this.shadowRoot.querySelector(`.js-sub-list-wrap[data-id="${itemHoveredId}"]`).classList.add("mm-body-active");
+                this.shadowRoot.querySelector(`.js-main-menu-switch[data-id="${itemHoveredId}"]`).closest('li').classList.add("mm-ctrl-active");
             });
         });
     }
