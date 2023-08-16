@@ -53,6 +53,7 @@ class StratwsHeader extends HTMLElement {
                 display: inline-flex;
                 justify-content: flex-start;
                 position: relative;
+                font-size: 12px;
             }
             .main-menu-wrap:not(.open) .main-menu {
                 display: none;
