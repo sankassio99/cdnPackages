@@ -9,8 +9,6 @@ class StratwsHeader extends HTMLElement {
         shadowDom.appendChild(this.styles());
 
         shadowDom.appendChild(this.stratwsStylesLink());
-        
-        shadowDom.appendChild(this.fontAwesomeCDN());
 
         shadowDom.appendChild(this.createTemplate());
     }
@@ -41,17 +39,6 @@ class StratwsHeader extends HTMLElement {
         
         link.setAttribute("rel", "stylesheet");
         link.setAttribute("href", linkHref);
-
-        return link;
-    }
-
-    fontAwesomeCDN(){
-        const link = document.createElement('link');
-        const linkHref = "https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css";
-        
-        link.setAttribute("rel", "stylesheet");
-        link.setAttribute("href", linkHref);
-        link.setAttribute("type", "text/css");
 
         return link;
     }
