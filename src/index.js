@@ -22,11 +22,13 @@ class StratwsHeader extends HTMLElement {
     }
 
     async connectedCallback() {
-        let mainMenuHtml = await this.getMainMenuHtml();
+        // let mainMenuHtml = await this.getMainMenuHtml();
 
-        if(mainMenuHtml === undefined){
-            mainMenuHtml = mainMenuDefault;
-        }
+        // if(mainMenuHtml === undefined){
+        //     mainMenuHtml = mainMenuDefault;
+        // }
+
+        let mainMenuHtml = mainMenuDefault;
 
         this.writeMainMenu(mainMenuHtml);
         this.activeMainMenuBehaviors();
@@ -57,8 +59,30 @@ class StratwsHeader extends HTMLElement {
     styles(){
         const style = document.createElement('style');
         style.textContent = `
-            
-        `
+            .main-menu-wrap {
+                display: inline-flex;
+                justify-content: flex-start;
+                position: relative;
+            }
+            .main-menu-wrap:not(.open) .main-menu {
+                display: none;
+            }
+            .main-menu-wrap .main-menu {
+                position: absolute;
+                z-index: 10;
+                top: 4px;
+                width: 340px;
+                background-color: #FFF;
+                border: 1px solid rgba(0,0,0,0.2);
+                box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+                border-radius: 6px;
+                color: #333;
+                overflow: hidden;
+            }
+            #mainMenuSpace {
+                height: 100%;
+            }
+        `;
 
         return style;
     }
@@ -78,8 +102,8 @@ class StratwsHeader extends HTMLElement {
     }
 
     activeMainMenuBehaviors(){
-        const popover = this.shadowRoot.querySelector("#mini-popover-main-menu");
-        const openButton = this.shadowRoot.querySelector("#main-menu-trigger");
+        const popover = this.shadowRoot.querySelector("#mainMenuWrap");
+        const openButton = this.shadowRoot.querySelector("#mainMenuTrigger");
 
         this.openMenuOnClick(openButton, popover);
         
@@ -92,12 +116,12 @@ class StratwsHeader extends HTMLElement {
     }
 
     openMenuOnClick(openButton, popover) {
-        openButton.addEventListener("click", () => popover.style.display = 'block');
+        openButton.addEventListener("click", () => popover.classList.add('open'));
     }
 
     closeMenuOnClickCloseIcon(popover) {
-        const closeBtn = this.shadowRoot.querySelector("#js-main-menu-close");
-        closeBtn.addEventListener("click", () => popover.style.display = 'none');
+        const closeBtn = this.shadowRoot.querySelector("#mainMenuClose");
+        closeBtn.addEventListener("click", () => popover.classList.remove('open'));
     }
 
     showListOnHoverIcon() {
@@ -116,8 +140,8 @@ class StratwsHeader extends HTMLElement {
         popover.addEventListener("click", (event) => event.stopPropagation());
         openButton.addEventListener("click", (event) => event.stopPropagation());
         window.addEventListener("click", () => {
-            if (popover.style.display == 'block') {
-                popover.style.display = 'none';
+            if (popover.classList.contains('open')) {
+                popover.classList.remove('open');
             }
         });
     }
