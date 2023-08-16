@@ -1,5 +1,6 @@
 import header from './header.html'
 import mainMenuDefault from './mainMenu.html'
+import mainMenuStyles from '!css-loader!./mainMenu.css'
 
 class StratwsHeader extends HTMLElement {
     constructor(){
@@ -45,31 +46,7 @@ class StratwsHeader extends HTMLElement {
 
     styles(){
         const style = document.createElement('style');
-        style.textContent = `
-            .main-menu-wrap {
-                display: inline-flex;
-                justify-content: flex-start;
-                position: relative;
-            }
-            .main-menu-wrap:not(.open) .main-menu {
-                display: none;
-            }
-            .main-menu-wrap .main-menu {
-                position: absolute;
-                z-index: 10;
-                top: 4px;
-                width: 340px;
-                background-color: #FFF;
-                border: 1px solid rgba(0,0,0,0.2);
-                box-shadow: 0 5px 10px rgba(0,0,0,0.2);
-                border-radius: 6px;
-                color: #333;
-                overflow: hidden;
-            }
-            #mainMenuSpace {
-                height: 100%;
-            }
-        `;
+        style.textContent = mainMenuStyles[0][1];
 
         return style;
     }
