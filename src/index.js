@@ -59,6 +59,9 @@ class StratwsHeader extends HTMLElement {
     styles(){
         const style = document.createElement('style');
         style.textContent = `
+            #mainMenuSpace {
+                height: 100%;
+            }
             .main-menu-wrap {
                 display: inline-flex;
                 justify-content: flex-start;
@@ -79,8 +82,14 @@ class StratwsHeader extends HTMLElement {
                 color: #333;
                 overflow: hidden;
             }
-            #mainMenuSpace {
-                height: 100%;
+            .main-menu-wrap .main-menu li a {
+                cursor: pointer;
+            }
+            .main-menu-wrap .main-menu .mm-ctrl .mm-list li.mm-featured-item svg {
+                width: 14px;
+                height: 14px;
+                margin: 3px 0;
+                fill: #333;
             }
         `;
 
