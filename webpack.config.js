@@ -3,8 +3,8 @@ const path = require("path")
 module.exports = {
     entry: './src/index.js',
     output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist')
+        filename: 'bundle.dev.js',
+        path: path.resolve(__dirname, './dist')
     },
     mode: 'production',
     module: {
@@ -14,5 +14,11 @@ module.exports = {
                 use: 'html-loader'
             }
         ]
-    }
+    },
+    devServer: {
+        static: {
+            directory: path.join(__dirname, 'public'),
+        },
+        port: 9000
+    },
 }
